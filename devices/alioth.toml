@@ -39,7 +39,7 @@ server = "https://update.miui.com/updates/miotaV3.php"
 # 上游标准stock OTA配置，pack自动拉取官方包作为构建基底
 [stock]
 version = "OS1.0.10.0.TKHCNXM"
-package = "https://superota.d.miui.com/OS1.0.10.0.TKHCNXM/miui_ALIOTH_OS1.0.10.0.TKHCNXM_ddf5cf5ea0_13.0.zip"
+package = "https://bkt-sgp-miui-ota-update-alisgp.oss-ap-southeast-1.aliyuncs.com/OS1.0.10.0.TKHCNXM/miui_ALIOTH_OS1.0.10.0.TKHCNXM_ddf5cf5ea0_13.0.zip"
 recovery = "f821ba6a4b39f41e131017d6f16b1539e30839e1d188c9020b2ea43ea9e5495b"
 
 # AW8697无上游evdev FF力反馈支持，暂不可用
