@@ -1,0 +1,47 @@
+[device]
+codename = "alioth"
+brand = "Redmi"
+model = "REDMI K40"
+ab = true
+soc = { hans = "骁龙®870 by xn", hant = "Snapdragon® 870 by xn", en = "Snapdragon® 870 by xn" }
+os_version_prop = "ro.mi.os.version.incremental"
+
+[display]
+width = 1080
+height = 2400
+dpi = 440
+
+[modules]
+sources = ["vendor_boot", "vendor_dlkm", "vendor"]
+
+[partitions]
+boot = "/dev/block/bootdevice/by-name/boot"
+vendor_boot = "/dev/block/bootdevice/by-name/vendor_boot"
+persist = "/dev/block/bootdevice/by-name/persist"
+
+# WLAN Fix for QCA6390 Kona(alioth)
+[wlan]
+modules = ["qca_cld3_qca6390"]
+writes = [{ path = "/sys/kernel/cnss/fs_ready", value = "1" }]
+firmware = [
+    { name = "wlan/qca_cld/qca6390/WCNSS_qcom_cfg.ini", path = "/vendor/etc/wifi/qca6390/WCNSS_qcom_cfg.ini" },
+    { name = "wlan/qca_cld/qca6390/wlan_mac.bin", partition = "persist", path = "wlan/wlan_mac.bin" },
+]
+interface = "wlan0"
+supplicant = "/vendor/bin/hw/wpa_supplicant"
+libraries = ["/vendor/lib64", "/system/lib64"]
+service = "android.hardware.wifi.supplicant.ISupplicant/default"
+probe = "http://connect.rom.miui.com/generate_204"
+
+[update]
+server = "https://update.miui.com/updates/miotaV3.php"
+
+# 上游标准stock OTA配置，pack自动拉取官方包作为构建基底
+[stock]
+version = "OS1.0.10.0.TKHCNXM"
+package = "https://superota.d.miui.com/OS1.0.10.0.TKHCNXM/miui_ALIOTH_OS1.0.10.0.TKHCNXM_ddf5cf5ea0_13.0.zip"
+recovery = "f821ba6a4b39f41e131017d6f16b1539e30839e1d188c9020b2ea43ea9e5495b"
+
+# AW8697无上游evdev FF力反馈支持，暂不可用
+# [haptics]
+# strength = { lightest = 0.5, strongest = 1.0 }
